@@ -1,0 +1,38 @@
+
+
+<!--For centering h1: https://medium.com/@ojogbomichael/position-an-absolute-div-to-the-center-tailwind-css-f9a0c08bf854-->
+<!--For Select bar color scheme : https://tailwindcss.com/-->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+    <link href="./output.css" rel="stylesheet">
+    <title>Race</title>
+</head>
+<body class ="bg-black flex flex-col h-screen overflow-hidden">
+    <nav class="bg-black">
+        <img class="inline h-16 " src="../images/f1-insight-logo.png" alt="F1 logo">
+    </nav>
+
+    <main class=" flex-grow bg-[url('../images/bg_image.jpg')] bg-center bg-cover flex  flex-col  justify-center text-center relative bg-blend-overlay bg-slate-700 bg-opacity-50">
+        <section class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col space-y-3">
+            <h1 class="text-slate-200 titillium-web-semibold-italic
+           text-xl sm:text-3xl md:text-4xl lg:text-5xl">Dive Into F1: Discover Races, Teams & Standings Across Season
+            </h1>
+           <select class="rounded-lg text-slate-400 bg-slate-800 h-10 ">
+                <option >Placeholder 1</option>
+                <option >Placeholder 2</option>
+                <option >Placeholder 3</option>
+            </select>
+        </section>
+    </main>
+
+</body>
+
+</html>
+

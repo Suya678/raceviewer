@@ -1,0 +1,14 @@
+{
+  "name": "raceviewer",
+  "version": "1.0.0",
+  "description": "Asg 2 for web dev",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.14"
+  }
+}
