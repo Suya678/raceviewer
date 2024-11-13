@@ -19,7 +19,7 @@
 </head>
 <body class="min-h-screen flex flex-col bg-black">
 
-<nav class="bg-black flex-none flex justify-between items-center px-4 py-2"> <!-- Added flex and spacing -->
+<nav class="bg-black flex justify-between items-center px-4 py-2"> <!-- Added flex and spacing -->
     <div class="flex items-center">
         <img class="h-16" src="../images/f1-insight-logo.png" alt="F1 logo" />
     </div>
@@ -29,10 +29,9 @@
     </ul>
 </nav>
 
-    <div class="flex flex-col md:flex-row gap-4 h-screen w-full bg-opacity-50 bg-[url('../images/bg_image.jpg')] bg-cover bg-center bg-blend-overlay">
+    <main class="flex flex-col md:flex-row gap-4 h-screen w-full bg-opacity-50 bg-[url('../images/bg_image.jpg')] bg-cover bg-center bg-blend-overlay">
 
-
-        <section class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1 flex flex-col space-y-3 gap-y-1">
+        <section class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1 flex flex-col space-y-3 gap-y-1" id="season-select-view">
             <h1 class="text-slate-200 titillium-web-semibold-italic
            text-xl sm:text-3xl md:text-4xl lg:text-5xl">Dive Into F1: Discover Races, Teams & Standings Across Season
             </h1>
@@ -205,7 +204,7 @@
 
 
         <!-- Results Section -->
-        <section class="w-full md:w-2/3 bg-slate-800/85 backdrop-blur-sm rounded flex flex-col m-2 p-2 hidden" id="results-section">
+        <section class="w-full md:w-2/3 bg-slate-800/85 backdrop-blur-sm rounded flex flex-col m-2 p-2 hidden" id="results-details-view">
             <h2 class="titillium-web-semibold-italic mb-2 text-center text-3xl text-slate-200 md:text-5xl"> Results for the 2023 Grand Prix</h2>
 
             <div class=" h-full flex flex-col md:flex-row gap-4 overflow-hidden">
@@ -538,7 +537,7 @@
 
         </section>
 
-    </div>
+    </main>
 
 
 
