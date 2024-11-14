@@ -1,10 +1,11 @@
 
 
 <!--For centering h1: https://medium.com/@ojogbomichael/position-an-absolute-div-to-the-center-tailwind-css-f9a0c08bf854-->
+<!-- For nav, followed a style from here: https://v1.tailwindcss.com/components/navigation -->
 <!--For Select bar color scheme : https://tailwindcss.com/-->
+
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,23 +20,24 @@
 </head>
 <body class="min-h-screen flex flex-col bg-black">
 
-<nav class="bg-black flex justify-between items-center px-4 py-2"> <!-- Added flex and spacing -->
+<header class="bg-black flex justify-between items-center px-2 py-1"> <!-- Added flex and spacing -->
     <div class="flex items-center">
-        <img class="h-16" src="../images/f1-insight-logo.png" alt="F1 logo" />
+        <img class="h-12 md:h-14" src="../images/f1-insight-logo.png" alt="F1 logo" />
     </div>
-    <ul class="flex items-center gap-x-8 titillium-web-regular  md:text-xl text-red-600">
-        <li><a href="#" class="hover:text-red-400  ">Home</a></li>
-        <li><a href="#" class="hover:text-red-400  ">Favorite</a></li>
-    </ul>
-</nav>
+    <nav>
+        <ul class="flex items-center gap-x-8 titillium-web-regular  md:text-xl text-red-600">
+            <li><a href="#" class="hover:text-red-400  ">Home</a></li>
+            <li><a href="#" class="hover:text-red-400  ">Favorite</a></li>
+        </ul>
+    </nav>
+</header>
 
     <main class="flex flex-col md:flex-row gap-4 h-screen w-full bg-opacity-50 bg-[url('../images/bg_image.jpg')] bg-cover bg-center bg-blend-overlay">
-
         <section class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1 flex flex-col space-y-3 gap-y-1" id="season-select-view">
             <h1 class="text-slate-200 titillium-web-semibold-italic
            text-xl sm:text-3xl md:text-4xl lg:text-5xl">Dive Into F1: Discover Races, Teams & Standings Across Season
             </h1>
-            <select class="rounded-lg text-slate-400 bg-slate-800 h-10 focus-outline-none focus:outline-none" id="home-select">
+            <select class="rounded-lg text-slate-400 bg-slate-800 h-10 focus-outline-none focus:outline-none" id="season-select">
                 <option disabled selected>Select a season</option>
                 <option value="2021">2021</option>
                 <option value="2022">2022</option>
@@ -46,9 +48,9 @@
 
         <!-- Races Section -->
         <section class="w-full md:w-1/3 bg-slate-800/85 backdrop-blur-sm rounded flex flex-col m-2 p-2 hidden" id="race-details-view">
-            <h2 class="titillium-web-semibold-italic mb-2 text-center text-3xl text-slate-200 md:text-5xl">Year Races</h2>
+            <h2 class="titillium-web-semibold-italic mb-2 text-center text-2xl text-slate-200 md:text-4xl">Year Races</h2>
             <div class="h-full overflow-y-auto">
-                <table class="min-w-full">
+                <table class="min-w-full " id="season-data-table">
                     <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
                     <tr>
                         <th class="px-2 py-2 text-center text-xs md:text-2xl">Round</th>
@@ -56,7 +58,7 @@
                         <th class="px-2 py-2"></th>
                     </tr>
                     </thead>
-                    <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
+                    <tbody class="titillium-web-regular bg-slate-700 text-slate-300" >
                     <tr class="hover:bg-slate-700">
                         <td class="px-6 py-4 text-center">Column</td>
                         <td class="px-6 py-4 text-center">Column</td>
@@ -202,30 +204,32 @@
             </div>
         </section>
 
-
         <!-- Results Section -->
         <section class="w-full md:w-2/3 bg-slate-800/85 backdrop-blur-sm rounded flex flex-col m-2 p-2 hidden" id="results-details-view">
-            <h2 class="titillium-web-semibold-italic mb-2 text-center text-3xl text-slate-200 md:text-5xl"> Results for the 2023 Grand Prix</h2>
+            <h2 class="titillium-web-semibold-italic mb-2 text-center text-2xl text-slate-200 md:text-4xl"> Results for the 2023 Grand Prix</h2>
 
             <div class=" h-full flex flex-col md:flex-row gap-4 overflow-hidden">
 
-                <div class=" h-full flex flex-col w-full md:w-1/2 l gap-4">
+                <aside class=" h-full flex flex-col w-full md:w-11/20 l gap-4">
 
-                    <div class="rounded bg-slate-700 p-4 text-slate-200 titillium-web-semibold-italic text-xl">
+                    <article class="rounded bg-slate-700 p-4 text-slate-200 titillium-web-semibold-italic text-xl">
                         <p>Circuit Name: Monza</p>
                         <p>Date: September</p>
-                        <p>Round: 14</p>
-                    </div>
+                        <p>Round:14</p>
+                    </article>
 
-                    <div class=" overflow-y-auto rounded bg-slate-700">
-                        <h3 class="bg-slate-600 p-4 titillium-web-semibold-italic text-xl text-slate-200">Qualifying Results</h3>
+                    <div class=" overflow-y-auto rounded bg-slate-700 overflow-x-auto">
+                        <h3 class=" p-4 titillium-web-semibold-italic text-xl text-slate-200 ">Qualifying Results</h3>
 
-                        <table class="min-w-full">
+                        <table class="min-w-full" id="qualifying-results-table">
                             <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
                             <tr>
-                                <th class="px-2 py-2 text-center text-xs md:text-2xl">Round</th>
-                                <th class="px-2 py-2 text-center text-xs md:text-2xl">Name</th>
-                                <th class="px-2 py-2"></th>
+                                <th class="px-2 py-2 text-center text-xs md:text-xl">Position</th>
+                                <th class="px-2 py-2 text-center text-xs md:text-xl">Name</th>
+                                <th class="px-2 py-2 text-center text-xs md:text-xl">Constructor</th>
+                                <th class="px-2 py-2 text-center text-xs md:text-xl">Q1</th>
+                                <th class="px-2 py-2 text-center text-xs md:text-xl">Q2</th>
+                                <th class="px-2 py-2 text-center text-xs md:text-xl">Q3</th>
                             </tr>
                             </thead>
                             <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
@@ -372,17 +376,21 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </aside>
 
-                <div class="overflow-y-auto w-full md:w-1/2  rounded bg-slate-700 ">
-                    <h3 class="bg-slate-600 p-4 titillium-web-semibold-italic text-xl  text-slate-200">Results</h3>
+                <div class="overflow-y-auto w-full md:w-9/20  rounded bg-slate-700 ">
+                    <h3 class=" p-4 titillium-web-semibold-italic text-xl text-slate-200 ">Results</h3>
 
-                    <table class="min-w-full">
+                    <table class="min-w-full" id="race-results">
                         <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
                         <tr>
-                            <th class="px-2 py-2 text-center text-xs md:text-2xl">Round</th>
-                            <th class="px-2 py-2 text-center text-xs md:text-2xl">Name</th>
-                            <th class="px-2 py-2"></th>
+                            <th class="px-2 py-2 text-center text-xs md:text-xl">Position</th>
+                            <th class="px-2 py-2 text-center text-xs md:text-xl">Name</th>
+                            <th class="px-2 py-2 text-center text-xs md:text-xl">Constructor</th>
+                            <th class="px-2 py-2 text-center text-xs md:text-xl">Laps</th>
+                            <th class="px-2 py-2 text-center text-xs md:text-xl">Points</th>
+
+
                         </tr>
                         </thead>
                         <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
@@ -852,16 +860,16 @@
     </div>
 </dialog>
 <dialog id="favorites-popup" class=" h-2/5 md:h-2/5 md:w-2/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15" >
-    <div class="flex flex-col h-full text-slate-200">
+    <div class="flex flex-col h-full text-slate-200 justify-center items-center">
         <div class=" flex flex-row w-full relative justify-center">
             <h2 class="titillium-web-semibold-italic text-2xl">Favorites</h2>
             <button class="absolute right-0  flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300" id="close-favorites-popup" type="button">
                 <span class="text-lg font-bold">&times;</span>
             </button>
         </div>
-        <div class="flex flex-row  flex-1 min-h-0 ">
+        <div class="flex flex-row flex-1 min-h-0 ">
             <section class="flex flex-1 flex-col gap-3  ounded p-2 justify-center items-center">
-                <h2 class="titillium-web-semibold-italic text-2xl text-slate-200">Drivers</h2>
+                <h2 class="titillium-web-semibold-italic text-xl text-slate-200">Drivers</h2>
                 <div class=" flex-1 overflow-y-auto rounded-lg bg-slate-700">
                     <table class="w-full table-auto ">
 
@@ -908,7 +916,7 @@
                 </div>
             </section>
             <section class="flex flex-1 flex-col gap-3  ounded p-2 justify-center items-center">
-                <h2 class="titillium-web-semibold-italic text-2xl text-slate-200">Constructors</h2>
+                <h2 class="titillium-web-semibold-italic text-xl text-slate-200">Constructors</h2>
                 <div class=" flex-1 overflow-y-auto rounded-lg bg-slate-700">
                     <table class="w-full table-auto ">
 
@@ -955,7 +963,7 @@
                 </div>
             </section>
             <section class="flex flex-1 flex-col gap-3  ounded p-2 justify-center items-center">
-                <h2 class="titillium-web-semibold-italic text-2xl text-slate-200">Circuits</h2>
+                <h2 class="titillium-web-semibold-italic text-xl text-slate-200">Circuits</h2>
                 <div class=" flex-1 overflow-y-auto rounded-lg bg-slate-700">
                     <table class="w-full table-auto">
 
@@ -978,9 +986,10 @@
                 </div>
             </section>
 
-
         </div>
-
+        <button class="titillium-web-semibold-italic mt-2 rounded-md bg-slate-600 hover:bg-slate-500 px-2 py-1 text-slate-200 text-lg" id="clear-favorites" type="button">
+            Clear Favorites
+        </button>
     </div>
 </dialog>
 </body>
