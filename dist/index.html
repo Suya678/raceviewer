@@ -210,9 +210,9 @@
 
             <div class=" h-full flex flex-col md:flex-row gap-4 overflow-hidden">
 
-                <aside class=" h-full flex flex-col w-full md:w-11/20 l gap-4">
+                <aside class=" h-full flex flex-col w-full md:w-11/20  gap-4">
 
-                    <article class="rounded bg-slate-700 p-4 text-slate-200 titillium-web-semibold-italic text-xl">
+                    <article class="rounded bg-slate-700 p-4 text-slate-200 titillium-web-semibold-italic text-xl" id="race-info">
                         <p>Circuit Name: Monza</p>
                         <p>Date: September</p>
                         <p>Round:14</p>
@@ -378,165 +378,207 @@
                     </div>
                 </aside>
 
-                <div class="overflow-y-auto w-full md:w-9/20  rounded bg-slate-700 ">
-                    <h3 class=" p-4 titillium-web-semibold-italic text-xl text-slate-200 ">Results</h3>
+                <div class="h-full flex flex-col w-full md:w-9/20  ap-4">
 
-                    <table class="min-w-full" id="race-results">
-                        <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
-                        <tr>
-                            <th class="px-2 py-2 text-center text-xs md:text-xl">Position</th>
-                            <th class="px-2 py-2 text-center text-xs md:text-xl">Name</th>
-                            <th class="px-2 py-2 text-center text-xs md:text-xl">Constructor</th>
-                            <th class="px-2 py-2 text-center text-xs md:text-xl">Laps</th>
-                            <th class="px-2 py-2 text-center text-xs md:text-xl">Points</th>
+                    <section class="rounded bg-slate-700 p-4 text-slate-200 titillium-web-semibold-italic text-xl md:text-2xl md:h-1/5 flex flex-col md:flex-row gap-4" id="podium-finish-cards">
+                            <article class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-center ">
+                                    <p>Number 1</p>
+                            </article>
+
+                        <article class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-center" >
+                            <p>Number </p>
+                        </article>
+
+                        <article class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-center">
+                                    <p>Number 3</p>
+                        </article>
+
+                    </section >
+
+                    <div class="overflow-y-auto rounded bg-slate-700 overflow-x-auto md:h-4/5">
+                        <h3 class=" p-4 titillium-web-semibold-italic text-xl text-slate-200 ">Results</h3>
+
+                        <table class="min-w-full" id="race-results-table">
+                            <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
+                            <tr>
+                                <th class="px-2 py-2 text-center text-xs md:text-xl">Position</th>
+                                <th class="px-2 py-2 text-center text-xs md:text-xl">Name</th>
+                                <th class="px-2 py-2 text-center text-xs md:text-xl">Constructor</th>
+                                <th class="px-2 py-2 text-center text-xs md:text-xl">Laps</th>
+                                <th class="px-2 py-2 text-center text-xs md:text-xl">Points</th>
 
 
-                        </tr>
-                        </thead>
-                        <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                            </tr>
+                            </thead>
+                            <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-700">
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">Column</td>
+                                <td class="px-6 py-4 text-center">
+                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
 

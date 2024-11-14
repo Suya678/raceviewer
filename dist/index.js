@@ -4,7 +4,8 @@ const API  = {
     QUERY: {
         RACES: "/races.php?season=",
         QUALIFYING: "/qualifying.php?race=",
-        RACE_INFO: "/races.php?id="
+        RACE_INFO: "/races.php?id=",
+        RACE_RESULTS: "/results.php?race="
     }
 };
 
@@ -14,9 +15,6 @@ const CSS_CLASSES = {
     RESULTS_BUTTON: "relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none hover:bg-slate-500",
     URL: "text-slate-400 hover:text-blue-300 underline  text-base"
 };
-
-
-
 
 
 
@@ -40,13 +38,43 @@ function createElement(elemName, className, textContent, ...attributes) {
 
 }
 
+
+
+
+function displayRaceResults(raceResults) {
+    const tableBody = document.querySelector("#race-results-table tbody");
+    tableBody.innerHTML = "";
+
+    raceResults.forEach((data) => {
+        const row = createElement("tr", CSS_CLASSES.ROW_HOVER, null);
+
+        row.appendChild(createElement("td", CSS_CLASSES.TABLE_CELL,
+            data.position));
+
+        row.appendChild(createElement("td", CSS_CLASSES.TABLE_CELL,
+            data.driver.forename + " " + data.driver.surname));
+
+        row.appendChild(createElement("td", CSS_CLASSES.TABLE_CELL,
+            data.constructor.name));
+
+        row.appendChild(createElement("td", CSS_CLASSES.TABLE_CELL,
+            data.laps));
+
+        row.appendChild(createElement("td", CSS_CLASSES.TABLE_CELL,
+            data.points));
+
+        tableBody.appendChild(row);
+    });
+
+
+}
+
 function displayQualifyingResults(qualifyingData) {
     const tableBody = document.querySelector("#qualifying-results-table tbody");
     tableBody.innerHTML = "";
 
 
     qualifyingData.forEach((data) => {
-        console.log(data);
         const row = createElement("tr", CSS_CLASSES.ROW_HOVER, null);
 
         row.appendChild(createElement("td", CSS_CLASSES.TABLE_CELL,
@@ -76,9 +104,9 @@ function displayQualifyingResults(qualifyingData) {
 
 function displayRaceInfo(raceInfo, roundNumber) {
     const  raceHeading= document.querySelector("#results-details-view h2");
-    raceHeading.textContent = "Results for the " +   raceInfo.year +  raceInfo.name;
+    raceHeading.textContent = "Results for the " +   raceInfo.year +  " " + raceInfo.name;
 
-    const article = document.querySelector("#results-details-view article");
+    const article = document.querySelector("#race-info");
     article.innerHTML = "";
 
     article.appendChild(createElement("p",null, "Circuit: "+ raceInfo.circuit.name));
@@ -90,7 +118,6 @@ function displayRaceInfo(raceInfo, roundNumber) {
         {"href": raceInfo.url},
                     {"target": "_blank"});
     article.appendChild(link);
-    console.log(article);
 
 
 }
@@ -104,23 +131,51 @@ async function getRaceInfo(raceID) {
     return (await response.json())[0];
 
 }
+
 async function getQualifyingResults(raceID) {
+
+    let data = localStorage.getItem(raceID + "_q");
+    if(data){
+        return JSON.parse(data);
+    }
+
     const response = await fetch(API.BASE_URL + API.QUERY.QUALIFYING + raceID );
+
     if (!response.ok) {
         throw new Error(`HTTP Response Error, Failed to fetch race id (${raceID}) Qualifying data :`);
     }
-    return (await response.json());
+    data = await response.json();
+
+    localStorage.setItem(raceID + "_q", JSON.stringify(data));
+    return data;
 
 }
 
+async function getRaceResults(raceID) {
+
+    const response = await fetch(API.BASE_URL + API.QUERY.RACE_RESULTS + raceID );
+
+    if (!response.ok) {
+        throw new Error(`HTTP Response Error, Failed to fetch race id (${raceID}) Qualifying data :`);
+    }
+    return await response.json();
+
+
+}
 
 async function handleRaceSelection(event) {
 
     try{
-        const raceInfo = await getRaceInfo(event.target.dataset.raceId);
-        const raceQualifyingResults = await getQualifyingResults(event.target.dataset.raceId);
-         displayRaceInfo(raceInfo, event.target.dataset.roundNumber);
+        const raceId = event.target.dataset.raceId;
+
+        const raceInfo = await getRaceInfo(raceId);
+        const raceQualifyingResults = await getQualifyingResults(raceId);
+        const raceResults = await getRaceResults(raceId);
+
+        displayRaceInfo(raceInfo, event.target.dataset.roundNumber);
         displayQualifyingResults(raceQualifyingResults);
+        displayRaceResults(raceResults);
+
         const resultsView = document.querySelector("#results-details-view");
         if (resultsView.classList.contains("hidden")) {
             resultsView.classList.remove("hidden");
@@ -131,6 +186,10 @@ async function handleRaceSelection(event) {
     }
 }
 
+
+
+
+/// FOr the left column results table
 
 function displaySeasonData(seasonData) {
     const tableBody = document.querySelector("#season-data-table tbody");
@@ -198,6 +257,14 @@ async function handleSeasonSelection(event) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+/*
+    document.querySelector("#season-select").classList.toggle("hidden");
+
+    document.querySelector("#race-details-view").classList.toggle("hidden");
+    const resultsView = document.querySelector("#results-details-view");
+
+    resultsView.classList.remove("hidden");
+*/
     document.querySelector("#season-select").addEventListener("change", handleSeasonSelection);
 
 });
