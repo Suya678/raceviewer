@@ -3,6 +3,7 @@
 <!--For centering h1: https://medium.com/@ojogbomichael/position-an-absolute-div-to-the-center-tailwind-css-f9a0c08bf854-->
 <!-- For nav, followed a style from here: https://v1.tailwindcss.com/components/navigation -->
 <!--For Select bar color scheme : https://tailwindcss.com/-->
+<!--Used Prettier for the formatting -->
 
 <!doctype html>
 <html lang="en">
@@ -19,726 +20,1158 @@
     <script src="./index.js"></script>
 </head>
 <body class="min-h-screen flex flex-col bg-black">
-
-<header class="bg-black flex justify-between items-center px-2 py-1"> <!-- Added flex and spacing -->
+<header class="bg-black flex justify-between items-center px-2 py-1">
     <div class="flex items-center">
-        <img class="h-12 md:h-14" src="../images/f1-insight-logo.png" alt="F1 logo" />
+        <img
+                class="h-12 md:h-14"
+                src="../images/f1-insight-logo.png"
+                alt="F1 logo"
+        />
     </div>
     <nav>
         <ul class="flex items-center gap-x-8 titillium-web-regular  md:text-xl text-red-600">
-            <li><a href="#" class="hover:text-red-400  ">Home</a></li>
-            <li><a href="#" class="hover:text-red-400  ">Favorite</a></li>
+            <li>
+                <a href="#" class="hover:text-red-400  ">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#" class="hover:text-red-400  ">
+                    Favorite
+                </a>
+            </li>
         </ul>
     </nav>
 </header>
 
-    <main class="flex flex-col md:flex-row gap-4 h-screen w-full bg-opacity-50 bg-[url('../images/bg_image.jpg')] bg-cover bg-center bg-blend-overlay">
-        <section class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1 flex flex-col space-y-3 gap-y-1" id="season-select-view">
-            <h1 class="text-slate-200 titillium-web-semibold-italic
-           text-xl sm:text-3xl md:text-4xl lg:text-5xl">Dive Into F1: Discover Races, Teams & Standings Across Season
-            </h1>
-            <select class="rounded-lg text-slate-400 bg-slate-800 h-10 focus-outline-none focus:outline-none" id="season-select">
-                <option disabled selected>Select a season</option>
-                <option value="2021">2021</option>
-                <option value="2022">2022</option>
-                <option value="2023"> 2023</option>
-                <option value="2024">2024</option>
-            </select>
-        </section>
+<main class="flex flex-col md:flex-row h-screen w-full bg-opacity-50 bg-[url('../images/bg_image.jpg')] bg-cover bg-center bg-blend-overlay">
+    <section
+            class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1 flex flex-col space-y-3"
+            id="season-select-view"
+    >
+        <h1
+                class="text-slate-200 titillium-web-semibold-italic
+           text-xl sm:text-3xl "
+        >
+            Dive Into F1: Discover Races, Teams & Standings Across Season
+        </h1>
+        <select
+                class="rounded-lg text-slate-400 bg-slate-800 h-10 focus:outline-none "
+                id="season-select"
+        >
+            <option disabled selected>
+                Select a season
+            </option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+        </select>
+    </section>
 
-        <!-- Races Section -->
-        <section class="w-full md:w-1/3 bg-slate-800/85 backdrop-blur-sm rounded flex flex-col m-2 p-2 hidden" id="race-details-view">
-            <h2 class="titillium-web-semibold-italic mb-2 text-center text-2xl text-slate-200 md:text-4xl">Year Races</h2>
-            <div class="h-full overflow-y-auto">
-                <table class="min-w-full " id="season-data-table">
-                    <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
-                    <tr>
-                        <th class="px-2 py-2 text-center text-xs md:text-2xl">Round</th>
-                        <th class="px-2 py-2 text-center text-xs md:text-2xl">Name</th>
-                        <th class="px-2 py-2"></th>
-                    </tr>
-                    </thead>
-                    <tbody class="titillium-web-regular bg-slate-700 text-slate-300" >
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-slate-700">
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">Column</td>
-                        <td class="px-6 py-4 text-center">
-                            <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    <section
+            class=" md:w-1/3 bg-slate-800/85 backdrop-blur-sm rounded flex flex-col m-2 p-2 hidden"
+            id="race-details-view"
+    >
+        <h2 class="titillium-web-semibold-italic mb-2 text-center text-2xl text-slate-200 md:text-4xl">
+            Year Races
+        </h2>
+        <div class="h-full overflow-y-auto">
+            <table class="min-w-full table-auto" id="season-data-table">
+                <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
+                <tr>
+                    <th class="px-2 py-2 text-center text-xs md:text-2xl">Round</th>
+                    <th class="px-2 py-2 text-center text-xs md:text-2xl">Name</th>
+                    <th class="px-2 py-2"></th>
+                </tr>
+                </thead>
+                <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                <tr class="hover:bg-slate-700">
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">Column</td>
+                    <td class="px-6 py-4 text-center">
+                        <button
+                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                onclick="showResults()"
+                        >
+                            results
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-        <!-- Results Section -->
-        <section class="w-full md:w-2/3 bg-slate-800/85 backdrop-blur-sm rounded flex flex-col m-2 p-2 hidden" id="results-details-view">
-            <h2 class="titillium-web-semibold-italic mb-2 text-center text-2xl text-slate-200 md:text-4xl"> Results for the 2023 Grand Prix</h2>
+    <section
+            class=" md:w-2/3 bg-slate-800/85 backdrop-blur-sm rounded flex flex-col m-2 p-2 hidden"
+            id="results-details-view"
+    >
+        <h2 class="titillium-web-semibold-italic mb-2 text-center text-2xl text-slate-200 md:text-4xl">
+            {" "}
+            Results for the 2023 Grand Prix
+        </h2>
 
-            <div class=" h-full flex flex-col md:flex-row gap-4 overflow-hidden">
+        <div class=" h-full flex flex-col md:flex-row gap-2 overflow-hidden">
+            <aside class=" h-full flex flex-col md:w-2/4 gap-2 ">
+                <article
+                        class="rounded bg-slate-700 p-4 text-slate-200 titillium-web-semibold-italic text-xl overflow-auto h-1/5 max-sm:h-1/6"
+                        id="race-info"
+                >
+                    <p>Circuit Name: Monza</p>
+                    <p>Date: September</p>
+                    <p>Round:14</p>
+                </article>
+                <div class=" rounded bg-slate-700 overflow-auto h-4/5 max-sm:h-5/6 ">
+                    <h3 class=" p-2 titillium-web-semibold-italic text-xl text-slate-200 ">
+                        Qualifying Results
+                    </h3>
 
-                <aside class=" h-full flex flex-col w-full md:w-11/20  gap-4">
+                    <table class="min-w-full table-auto" id="qualifying-results-table">
+                        <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
+                        <tr>
+                            <th class="px-2 py-2 text-center text-xs md:text-lg">
+                                Position
+                            </th>
+                            <th class="px-2 py-2 text-center text-xs md:text-lg">Name</th>
+                            <th class="px-2 py-2 text-center text-xs md:text-lg">
+                                Constructor
+                            </th>
+                            <th class="px-2 py-2 text-center text-xs md:text-lg">Q1</th>
+                            <th class="px-2 py-2 text-center text-xs md:text-lg">Q2</th>
+                            <th class="px-2 py-2 text-center text-xs md:text-lg">Q3</th>
+                        </tr>
+                        </thead>
+                        <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </aside>
 
-                    <article class="rounded bg-slate-700 p-4 text-slate-200 titillium-web-semibold-italic text-xl" id="race-info">
-                        <p>Circuit Name: Monza</p>
-                        <p>Date: September</p>
-                        <p>Round:14</p>
+            <div class="h-full flex flex-col  md:w-2/4 gap-2">
+                <section
+                        class="rounded bg-slate-700 p-4 text-red-500 titillium-web-semibold-italic text-sm flex flex-row gap-4 overflow-auto h-1/5 max-sm:h-[15%]"
+                        id="podium-finish-cards"
+                >
+                    <article class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-end bg-white p-2 bg-[url('../images/1.png')] bg-[length:60%_60%] bg-no-repeat">
+                        <p>Max Verstappen</p>
                     </article>
 
-                    <div class=" overflow-y-auto rounded bg-slate-700 overflow-x-auto">
-                        <h3 class=" p-4 titillium-web-semibold-italic text-xl text-slate-200 ">Qualifying Results</h3>
+                    <article class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-end bg-white p-2 bg-[url('../images/2.png')] bg-[length:60%_60%] bg-no-repeat">
+                        <p>Max Verstappen</p>
+                    </article>
+                    <article class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-end bg-white p-2 bg-[url('../images/3.png')] bg-[length:60%_60%] bg-no-repeat">
+                        <p>Max Verstappen</p>
+                    </article>
+                </section>
 
-                        <table class="min-w-full" id="qualifying-results-table">
-                            <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
-                            <tr>
-                                <th class="px-2 py-2 text-center text-xs md:text-xl">Position</th>
-                                <th class="px-2 py-2 text-center text-xs md:text-xl">Name</th>
-                                <th class="px-2 py-2 text-center text-xs md:text-xl">Constructor</th>
-                                <th class="px-2 py-2 text-center text-xs md:text-xl">Q1</th>
-                                <th class="px-2 py-2 text-center text-xs md:text-xl">Q2</th>
-                                <th class="px-2 py-2 text-center text-xs md:text-xl">Q3</th>
-                            </tr>
-                            </thead>
-                            <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </aside>
+                <section class="overflow-auto rounded bg-slate-700  h-4/5 max-sm:h-[85%]">
+                    <h3 class=" p-2 titillium-web-semibold-italic text-xl text-slate-200 ">
+                        Results
+                    </h3>
 
-                <div class="h-full flex flex-col w-full md:w-9/20  ap-4">
-
-                    <section class="rounded bg-slate-700 p-4 text-slate-200 titillium-web-semibold-italic text-xl md:text-2xl md:h-1/5 flex flex-col md:flex-row gap-4" id="podium-finish-cards">
-                            <article class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-center ">
-                                    <p>Number 1</p>
-                            </article>
-
-                        <article class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-center" >
-                            <p>Number </p>
-                        </article>
-
-                        <article class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-center">
-                                    <p>Number 3</p>
-                        </article>
-
-                    </section >
-
-                    <div class="overflow-y-auto rounded bg-slate-700 overflow-x-auto md:h-4/5">
-                        <h3 class=" p-4 titillium-web-semibold-italic text-xl text-slate-200 ">Results</h3>
-
-                        <table class="min-w-full" id="race-results-table">
-                            <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
-                            <tr>
-                                <th class="px-2 py-2 text-center text-xs md:text-xl">Position</th>
-                                <th class="px-2 py-2 text-center text-xs md:text-xl">Name</th>
-                                <th class="px-2 py-2 text-center text-xs md:text-xl">Constructor</th>
-                                <th class="px-2 py-2 text-center text-xs md:text-xl">Laps</th>
-                                <th class="px-2 py-2 text-center text-xs md:text-xl">Points</th>
-
-
-                            </tr>
-                            </thead>
-                            <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-slate-700">
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">Column</td>
-                                <td class="px-6 py-4 text-center">
-                                    <button class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none" onclick="showResults()">results</button>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    <table class="min-w-full" id="race-results-table">
+                        <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
+                        <tr>
+                            <th class="px-2 py-2 text-center text-xs md:text-lg">
+                                Position
+                            </th>
+                            <th class="px-2 py-2 text-center text-xs md:text-lg">Name</th>
+                            <th class="px-2 py-2 text-center text-xs md:text-lg">
+                                Constructor
+                            </th>
+                            <th class="px-2 py-2 text-center text-xs md:text-lg">Laps</th>
+                            <th class="px-2 py-2 text-center text-xs md:text-lg">
+                                Points
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-700">
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">Column</td>
+                            <td class="px-6 py-4 text-center">
+                                <button
+                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                        onclick="showResults()"
+                                >
+                                    results
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </section>
             </div>
+        </div>
+    </section>
+</main>
 
-
-
-
-        </section>
-
-    </main>
-
-
-
-
-
-
-<!--Popups-->
-<dialog id="constructor-popup" class="h-3/4 w-3/4 md:h-1/3 md:w-3/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15" >
-    <div class="flex flex-col h-full min-h-0"> <!-- flex won't work with hidden, hence the wrapper -->
-
-        <button class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300" id="close_constructor_popup" type="button">
+<dialog
+        id="constructor-popup"
+        class="h-3/4 w-3/4 md:h-1/3 md:w-3/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15"
+>
+    <div class="flex flex-col h-full min-h-0">
+        <button
+                class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300"
+                id="close_constructor_popup"
+                type="button"
+        >
             <span class="text-lg font-bold">&times;</span>
         </button>
 
         <main class="flex min-h-0 flex-1 flex-col gap-3 text-slate-200 md:flex-row m-1 ">
-
-            <!-- Info Card--->
             <section class="flex flex-col items-center gap-6 p-2 md:p4 md:basis-1/3 ">
                 <h2 class="titillium-web-semibold-italic text-2xl">Audi</h2>
                 <p class="titillium-web-regular">Name:</p>
                 <p class="titillium-web-regular">Nationality: </p>
-                <button class="rounded bg-slate-700 px-4 py-2  text-sm hover:bg-slate-600">Add Favorites</button>
+                <button class="rounded bg-slate-700 px-4 py-2  text-sm hover:bg-slate-600">
+                    Add Favorites
+                </button>
             </section>
 
-            <!-- Table section--->
             <section class="flex flex-1 flex-col gap-3 overflow-hidden rounded bg-slate-700 p-2 ">
-                <h2 class="titillium-web-semibold-italic mr-auto text-2xl text-slate-200">Race</h2>
-                <div class="h-full min-h-0 flex-1 overflow-y-auto rounded-lg">  <!-- Need a wrapper to make it scrollable -->
-                    <table class="w-full table-auto">
+                <h2 class="titillium-web-semibold-italic mr-auto text-2xl text-slate-200">
+                    Race
+                </h2>
+                <div class="h-full min-h-0 flex-1 overflow-y-auto rounded-lg">
+                    <table class="min-w-full table-auto">
                         <thead class="sticky top-0 bg-slate-600">
                         <tr class="text-slate-200">
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">Round</th>
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">Name</th>
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">Driver</th>
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">Position</th>
+                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                Round
+                            </th>
+                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                Name
+                            </th>
+                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                Driver
+                            </th>
+                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                Position
+                            </th>
                         </tr>
                         </thead>
                         <tbody class="titillium-web-regular bg-slate-800">
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -746,9 +1179,16 @@
         </main>
     </div>
 </dialog>
-<dialog id="driver-popup" class="h-3/4 w-3/4 md:h-1/3 md:w-3/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15" >
+<dialog
+        id="driver-popup"
+        class="h-3/4 w-3/4 md:h-1/3 md:w-3/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15"
+>
     <div class="flex flex-col h-full min-h-0">
-        <button class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300" id="close-driver-popup" type="button">
+        <button
+                class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300"
+                id="close-driver-popup"
+                type="button"
+        >
             <span class="text-lg font-bold">&times;</span>
         </button>
 
@@ -757,123 +1197,236 @@
                 <h2 class="titillium-web-semibold-italic text-2xl">Audi</h2>
                 <p class="titillium-web-regular">Name:</p>
                 <p class="titillium-web-regular">Nationality:</p>
-                <button class="rounded bg-slate-700 px-4 py-2  text-sm hover:bg-slate-600">Add Favorites</button>
-                <img src="../images/Driver_photo.jpg" alt="Driver with Helmet on" class="h-14 w-14 md:h-24 md:w-24 rounded-full object-cover" />
+                <button class="rounded bg-slate-700 px-4 py-2  text-sm hover:bg-slate-600">
+                    Add Favorites
+                </button>
+                <img
+                        src="../images/Driver_photo.jpg"
+                        alt="Driver with Helmet on"
+                        class="h-14 w-14 md:h-24 md:w-24 rounded-full object-cover"
+                />
             </section>
 
             <section class="flex flex-1 flex-col gap-3 overflow-hidden rounded bg-slate-700 p-2">
-                <h2 class="titillium-web-semibold-italic mr-auto text-2xl text-slate-200">Race</h2>
+                <h2 class="titillium-web-semibold-italic mr-auto text-2xl text-slate-200">
+                    Race
+                </h2>
                 <div class="h-full min-h-0 flex-1 overflow-y-auto rounded-lg">
                     <table class="w-full table-auto">
                         <thead class="sticky top-0 bg-slate-600">
                         <tr class="text-slate-200">
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">Round</th>
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">Name</th>
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">Driver</th>
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">Position</th>
+                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                Round
+                            </th>
+                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                Name
+                            </th>
+                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                Driver
+                            </th>
+                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                Position
+                            </th>
                         </tr>
                         </thead>
                         <tbody class="titillium-web-regular bg-slate-800">
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
 
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">1</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">British Grand Prix</td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">Max Verstappen</td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">1</td>
-
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                1
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                British Grand Prix
+                            </td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                Max Verstappen
+                            </td>
+                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                1
+                            </td>
                         </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -881,155 +1434,229 @@
         </main>
     </div>
 </dialog>
-<dialog id="circuit-popup" class=" h-2/5 md:h-1/4 md:w-1/4 rounded-lg bg-slate-800  focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15" >
+<dialog
+        id="circuit-popup"
+        class=" h-2/5 md:h-1/4 md:w-1/4 rounded-lg bg-slate-800  focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15"
+>
     <div class="flex flex-row h-full min-h-0 text-slate-200">
         <div class="h-full bg-amber-50 basis-1/2">
             <img src="../images/Austin.jpg" class="h-full w-full " alt="circuit" />
         </div>
 
         <div class=" basis-1/2 flex flex-col h-full min-h-0">
-            <button class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300" id="close-circuit-popup" type="button">
+            <button
+                    class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300"
+                    id="close-circuit-popup"
+                    type="button"
+            >
                 <span class="text-lg font-bold">&times;</span>
             </button>
             <section class="flex flex-col items-center gap-6 p-2 md:p4 md:basis-1/3 ">
                 <h2 class="titillium-web-semibold-italic text-2xl">Audi</h2>
                 <p class="titillium-web-regular">Name:</p>
                 <p class="titillium-web-regular">Nationality: </p>
-                <button class="rounded bg-slate-700 px-4 py-2  text-sm hover:bg-slate-600">Add Favorites</button>
+                <button class="rounded bg-slate-700 px-4 py-2  text-sm hover:bg-slate-600">
+                    Add Favorites
+                </button>
             </section>
         </div>
-
     </div>
 </dialog>
-<dialog id="favorites-popup" class=" h-2/5 md:h-2/5 md:w-2/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15" >
+<dialog
+        id="favorites-popup"
+        class=" h-2/5 md:h-2/5 md:w-2/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15"
+>
     <div class="flex flex-col h-full text-slate-200 justify-center items-center">
         <div class=" flex flex-row w-full relative justify-center">
             <h2 class="titillium-web-semibold-italic text-2xl">Favorites</h2>
-            <button class="absolute right-0  flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300" id="close-favorites-popup" type="button">
+            <button
+                    class="absolute right-0  flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300"
+                    id="close-favorites-popup"
+                    type="button"
+            >
                 <span class="text-lg font-bold">&times;</span>
             </button>
         </div>
         <div class="flex flex-row flex-1 min-h-0 ">
             <section class="flex flex-1 flex-col gap-3  ounded p-2 justify-center items-center">
-                <h2 class="titillium-web-semibold-italic text-xl text-slate-200">Drivers</h2>
+                <h2 class="titillium-web-semibold-italic text-xl text-slate-200">
+                    Drivers
+                </h2>
                 <div class=" flex-1 overflow-y-auto rounded-lg bg-slate-700">
                     <table class="w-full table-auto ">
-
                         <tbody class="titillium-web-regular  ">
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
-
                         </tbody>
                     </table>
                 </div>
             </section>
             <section class="flex flex-1 flex-col gap-3  ounded p-2 justify-center items-center">
-                <h2 class="titillium-web-semibold-italic text-xl text-slate-200">Constructors</h2>
+                <h2 class="titillium-web-semibold-italic text-xl text-slate-200">
+                    Constructors
+                </h2>
                 <div class=" flex-1 overflow-y-auto rounded-lg bg-slate-700">
                     <table class="w-full table-auto ">
-
                         <tbody class="titillium-web-regular  ">
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
-
                         </tbody>
                     </table>
                 </div>
             </section>
             <section class="flex flex-1 flex-col gap-3  ounded p-2 justify-center items-center">
-                <h2 class="titillium-web-semibold-italic text-xl text-slate-200">Circuits</h2>
-                <div class=" flex-1 overflow-y-auto rounded-lg bg-slate-700">
+                <h2 class="titillium-web-semibold-italic text-xl text-slate-200">
+                    Circuits
+                </h2>
+                <div class=" flex-1 overflow-auto rounded-lg bg-slate-700">
                     <table class="w-full table-auto">
-
                         <tbody class="titillium-web-regular  ">
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
                         <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">British Grand Prix</td>
+                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
+                                British Grand Prix
+                            </td>
                         </tr>
-
                         </tbody>
                     </table>
                 </div>
             </section>
-
         </div>
-        <button class="titillium-web-semibold-italic mt-2 rounded-md bg-slate-600 hover:bg-slate-500 px-2 py-1 text-slate-200 text-lg" id="clear-favorites" type="button">
+        <button
+                class="titillium-web-semibold-italic mt-2 rounded-md bg-slate-600 hover:bg-slate-500 px-2 py-1 text-slate-200 text-lg"
+                id="clear-favorites"
+                type="button"
+        >
             Clear Favorites
         </button>
     </div>
