@@ -5,15 +5,21 @@ const API = {
         QUALIFYING: "/qualifying.php?race=",
         RACE_INFO: "/races.php?id=",
         RACE_RESULTS: "/results.php?race=",
+        CIRCUIT_INFO: "/circuits.php?id=",
+        DRIVER_INFO: "/drivers.php?id="
     },
 };
 
 const CSS_CLASSES = {
     TABLE_CELL: "px-2 py-2 text-center",
+    TABLE_CELL_POPUP: "px-2 py-2 text-center underline cursor-pointer hover:text-cyan-300",
+    CIRCUIT_POPUP: "underline cursor-pointer hover:text-cyan-300",
     ROW_HOVER: "hover:bg-slate-600",
     RESULTS_BUTTON:
         "rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none hover:bg-slate-500",
     URL: "text-slate-400 hover:text-blue-300 underline text-base",
+    ADD_TO_FAV_BUTTON: "rounded bg-slate-700 px-4 py-2 text-sm hover:bg-slate-600",
+    POPUP_HEADING: "titillium-web-semibold-italic text-2xl"
 };
 
 /**
@@ -82,6 +88,60 @@ function displayPodiumFinishers(raceResults) {
             raceResults[index].driver.surname;
     });
 }
+
+
+function displayDriverPopup(driverData){
+
+    const driverPopupInfoSection = document.querySelector("#driver-popup section");
+    driverPopupInfoSection.innerHTML = "";
+
+
+    driverPopupInfoSection.appendChild(createElement("h2",
+        CSS_CLASSES.POPUP_HEADING,driverData.forename + " " + driverData.surname));
+
+
+    driverPopupInfoSection.appendChild(createElement("p",
+        null, "Date Of Birth: " + driverData.dob));
+
+    driverPopupInfoSection.appendChild(createElement("p",
+        null, driverData.nationality));
+
+    const link = createElement(
+        "a",
+        CSS_CLASSES.URL,
+        "Url: " + driverData.url,
+        { href: driverData.url },
+        { target: "_blank" },
+    );
+    driverPopupInfoSection.appendChild(link);
+
+    driverPopupInfoSection.appendChild(createElement("button",
+        CSS_CLASSES.ADD_TO_FAV_BUTTON,"Add Favorites"));
+    document.querySelector("#driver-popup").showModal();
+
+
+}
+
+
+
+
+async function handleDriverPopup(event){
+
+
+    try {
+        const driverAPIQuery = API.BASE_URL + API.QUERY.DRIVER_INFO + event.target.dataset.driverId;
+        console.log(driverAPIQuery);
+        const driverData = await fetchWithCache(driverAPIQuery);
+        displayDriverPopup(driverData);
+    } catch (error) {
+        console.error("Error loading season data:", error);
+    }
+
+
+}
+
+
+
 //Need to document and maybe refactor
 function displayRaceResults(raceResults) {
     const tableBody = document.querySelector("#race-results-table tbody");
@@ -92,16 +152,20 @@ function displayRaceResults(raceResults) {
 
         row.appendChild(createElement("td", CSS_CLASSES.TABLE_CELL, data.position));
 
-        row.appendChild(
-            createElement(
-                "td",
-                CSS_CLASSES.TABLE_CELL,
-                data.driver.forename + " " + data.driver.surname,
-            ),
+        const driver =  createElement(
+            "td",
+            CSS_CLASSES.TABLE_CELL_POPUP,
+            data.driver.forename + " " + data.driver.surname,
+            {"data-driver-id": data.driver.id}
         );
 
+        driver.addEventListener("click", handleDriverPopup);
+
+        row.appendChild( driver);
+
+
         row.appendChild(
-            createElement("td", CSS_CLASSES.TABLE_CELL, data.constructor.name),
+            createElement("td", CSS_CLASSES.TABLE_CELL_POPUP, data.constructor.name),
         );
 
         row.appendChild(createElement("td", CSS_CLASSES.TABLE_CELL, data.laps));
@@ -125,16 +189,20 @@ function displayQualifyingResults(qualifyingData) {
 
         row.appendChild(createElement("td", CSS_CLASSES.TABLE_CELL, data.position));
 
-        row.appendChild(
-            createElement(
-                "td",
-                CSS_CLASSES.TABLE_CELL,
-                data.driver.forename + " " + data.driver.surname,
-            ),
+        const driver =  createElement(
+            "td",
+            CSS_CLASSES.TABLE_CELL_POPUP,
+            data.driver.forename + " " + data.driver.surname,
+            {"data-driver-id": data.driver.id}
         );
 
+        driver.addEventListener("click", handleDriverPopup);
+
+        row.appendChild( driver);
+
+
         row.appendChild(
-            createElement("td", CSS_CLASSES.TABLE_CELL, data.constructor.name),
+            createElement("td", CSS_CLASSES.TABLE_CELL_POPUP, data.constructor.name),
         );
 
         row.appendChild(createElement("td", CSS_CLASSES.TABLE_CELL, data.q1));
@@ -147,6 +215,51 @@ function displayQualifyingResults(qualifyingData) {
     });
 }
 
+
+//Need to document
+function displayCircuitPopup(circuitData) {
+
+    const circuitPopup = document.querySelector("#circuit-popup section");
+    console.log(circuitData);
+    circuitPopup.innerHTML = "";
+    circuitPopup.appendChild(createElement("h2",
+        CSS_CLASSES.POPUP_HEADING,"Circuit Details"));
+
+    circuitPopup.appendChild(createElement("p",
+        null,circuitData.name));
+
+    circuitPopup.appendChild(createElement("p",
+        null, circuitData.location + ", " + circuitData.country));
+
+    const link = createElement(
+        "a",
+        CSS_CLASSES.URL,
+        "Url: " + circuitData.url,
+        { href: circuitData.url },
+        { target: "_blank" },
+    );
+    circuitPopup.appendChild(link);
+
+    circuitPopup.appendChild(createElement("button",
+        CSS_CLASSES.ADD_TO_FAV_BUTTON,"Add Favorites"));
+
+    document.querySelector("#circuit-popup").showModal();
+
+}
+async function handleCircuitPopup(event) {
+
+    try {
+        const circuitAPIQuery = API.BASE_URL + API.QUERY.CIRCUIT_INFO + event.target.dataset.circuitId;
+        console.log(circuitAPIQuery);
+        const circuitData = await fetchWithCache(circuitAPIQuery);
+        displayCircuitPopup(circuitData);
+    } catch (error) {
+        console.error("Error loading season data:", error);
+    }
+}
+
+
+
 //Need to document and maybe refactor
 function displayRaceInfo(raceInfo, roundNumber) {
     const raceHeading = document.querySelector("#results-details-view h2");
@@ -156,9 +269,10 @@ function displayRaceInfo(raceInfo, roundNumber) {
     const article = document.querySelector("#race-info");
     article.innerHTML = "";
 
-    article.appendChild(
-        createElement("p", null, "Circuit: " + raceInfo.circuit.name),
-    );
+    const circuit = createElement("p", CSS_CLASSES.CIRCUIT_POPUP, "Circuit: " + raceInfo.circuit.name, {"data-circuit-id": raceInfo.circuit.id});
+    circuit.addEventListener("click", handleCircuitPopup);
+    article.appendChild(circuit);
+
     article.appendChild(createElement("p", null, "Round " + roundNumber));
     article.appendChild(createElement("p", null, "Date " + raceInfo.date));
 
@@ -262,8 +376,34 @@ async function handleSeasonSelection(event) {
     }
 }
 
+
 document.addEventListener("DOMContentLoaded", () => {
     document
         .querySelector("#season-select")
         .addEventListener("change", handleSeasonSelection);
+
+
+    document
+        .querySelector("#close-driver-popup")
+        .addEventListener("click",() => {
+            document.querySelector("#driver-popup").close();
+
+        });
+
+    document
+        .querySelector("#close-circuit-popup")
+        .addEventListener("click",() => {
+            document.querySelector("#circuit-popup").close();
+        });
+
+    document
+        .querySelector("#close_constructor_popup")
+        .addEventListener("click",() => {
+            document.querySelector("#constructor-popup").close();
+
+        });
+
+  //document
+    //   .querySelector("#driver-popup")
+      // .showModal();
 });
