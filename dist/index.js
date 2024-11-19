@@ -568,7 +568,7 @@ class DriverPopupController extends BaseTableController {
             this.data = this.seasonRaceResults.filter((race) => {
                 return race.driver.id === Number(driverId);
             });
-            super.poupulateTable();
+            super.populateTable();
             this.displayDriverInfo(driverInfo);
         } catch (error) {
             console.error(
@@ -1057,7 +1057,6 @@ class SeasonRacesController extends BaseTableController {
      * off while toggling the race view on.
      */
     populateSeasonRacesTable = () => {
-        document.querySelector("#season-select").classList.add("hidden");
         super.populateTable();
         this.updateSeasonYear();
         document.querySelector("#race-details-view").classList.remove("hidden");
@@ -1110,6 +1109,7 @@ class Main {
      */
     async initialize(event) {
         try {
+            document.querySelector("#season-select").classList.add("hidden");
             [
                 this.seasonRaceResults,
                 this.seasonQualifyingResults,
