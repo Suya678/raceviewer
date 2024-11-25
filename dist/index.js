@@ -27,7 +27,7 @@ const CSS_CLASSES = {
         "rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none hover:bg-slate-500",
     URL: "text-slate-400 hover:text-blue-300 underline text-base",
     ADD_TO_FAV_BUTTON:
-        "rounded bg-slate-700 px-4 py-2 text-sm hover:bg-slate-600",
+        "add-favorite-button rounded bg-slate-700 px-4 py-2 text-sm hover:bg-slate-600",
     POPUP_HEADING: "titillium-web-semibold-italic text-2xl",
     SORTABLE_ROUND_HEADER:
         "px-2 py-2 text-center text-xs md:text-2xl sortable round",
@@ -36,7 +36,9 @@ const CSS_CLASSES = {
     EMPTY_HEADER: "px-2 py-2",
 };
 
+
 class Utility {
+
     /**
      * Sorts an array of objects based on a numeric property value.
      * This function creates a shallow copy of the original object array.
@@ -70,19 +72,17 @@ class Utility {
      * @Ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
      */
     static sortAnArrayOfObjectsByString(sortObject, sortValue, sortOrder) {
-        if (sortOrder === ASCENDING_ORDER) {
-            return sortObject
-                .slice()
-                .sort((a, b) =>
-                    a[sortValue].toUpperCase().localeCompare(b[sortValue].toUpperCase()),
-                );
-        } else {
-            return sortObject
-                .slice()
-                .sort((a, b) =>
-                    b[sortValue].toUpperCase().localeCompare(a[sortValue].toUpperCase()),
-                );
-        }
+        return sortObject.slice().sort((a, b) => {
+            // Remove hearts before comparing
+            const aValue = String(a[sortValue]).replace("♥", "").trim();
+            const bValue = String(b[sortValue]).replace("♥", "").trim();
+
+            if (sortOrder === ASCENDING_ORDER) {
+                return aValue.toUpperCase().localeCompare(bValue.toUpperCase());
+            } else {
+                return bValue.toUpperCase().localeCompare(aValue.toUpperCase());
+            }
+        });
     }
 
     /**
@@ -186,16 +186,15 @@ class Utility {
         const tableHeaders = document.querySelectorAll(`${tableID} th`);
 
         tableHeaders.forEach((header) => {
-            header.textContent = header.textContent.replace(/[↑↓]/, "");
+            // Only remove sorting arrows (↑↓), preserve other characters
+            header.textContent = header.textContent.replace(/[↑↓]/g, '').trim();
         });
 
         const sortHeading = document.querySelector(
-            `${tableID} th[data-sortable="${sortValue}"]`,
+            `${tableID} th[data-sortable="${sortValue}"]`
         );
-        if (sortOrder === ASCENDING_ORDER) {
-            sortHeading.textContent += "↑";
-        } else {
-            sortHeading.textContent += "↓";
+        if (sortHeading) {
+            sortHeading.textContent += sortOrder === ASCENDING_ORDER ? "↑" : "↓";
         }
     }
     v;
@@ -271,12 +270,13 @@ class Utility {
             }
         });
     }
+
 }
 
 /**
  * Base class for implementing sortable table controllers.
  * Provides core functionality for table sorting and display.
- * Some functions must be implemented by the inhertd classes
+ * Some functions must be implemented by the inherted classes
  *
  * @class
  */
@@ -304,6 +304,60 @@ class BaseTableController {
     }
 
     /**
+     * Synchronizes the presence of heart icons (♥) in the results tables
+     * with the current list of favorite drivers, constructors, and circuits.
+     * 
+     * For each cell in the qualifying and race results tables, checks whether the
+     * cell's content matches any favorite. Adds or removes a heart icon as needed.
+     *
+     * @returns {void}
+     */
+    syncHeartsWithFavorites() {
+        const favoriteDriversTable = document.getElementById("drivers-table");
+        const favoriteConstructorsTable = document.getElementById("constructors-table");
+        const favoriteCircuitsTable = document.getElementById("circuits-table");
+
+        const favoriteDrivers = Array.from(favoriteDriversTable.querySelectorAll("td")).map(
+            (cell) => cell.textContent.trim()
+        );
+
+        const favoriteConstructors = Array.from(favoriteConstructorsTable.querySelectorAll("td")).map(
+            (cell) => cell.textContent.trim()
+        );
+
+        const favoriteCircuits = Array.from(favoriteCircuitsTable.querySelectorAll("td")).map(
+            (cell) => cell.textContent.trim()
+        );
+
+        const tables = [
+            document.getElementById("qualifying-results-table"),
+            document.getElementById("race-results-table"),
+        ];
+
+        tables.forEach((table) => {
+            if (!table) return;
+
+            const cells = table.querySelectorAll("td");
+            cells.forEach((cell) => {
+                const hasHeart = cell.textContent.includes("♥");
+                const cellText = cell.textContent.replace("♥", "").trim();
+
+                const shouldHaveHeart =
+                    favoriteDrivers.includes(cellText) ||
+                    favoriteConstructors.includes(cellText) ||
+                    favoriteCircuits.includes(cellText);
+
+                if (shouldHaveHeart && !hasHeart) {
+                    cell.textContent = `${cellText} ♥`;
+                } else if (!shouldHaveHeart && hasHeart) {
+                    cell.textContent = cellText;
+                }
+            });
+        });
+
+    }
+
+    /**
      * Handles click events on sortable table headers.
      * Updates the sort direction and key, then refreshes the table
      * via a class method.
@@ -320,6 +374,7 @@ class BaseTableController {
         }
         this.tableSortInfo.key = event.target.dataset.sortable;
         this.populateTable();
+        this.syncHeartsWithFavorites();
     }
 
     /**
@@ -346,14 +401,220 @@ class BaseTableController {
      *
      * @returns {Array<Object>} - Sorted array of data objects
      */
-    getSortedData() {}
+    getSortedData() { }
 
     /**
      * Creates a single row for a table. Must be implemented by the child classes.
      * @param {Object} data - The data to be used for creating the row
      * @returns {HTMLTableRowElement} - The created row element
      */
-    createRow(data) {}
+    createRow(data) { }
+}
+
+/**
+ * The FavoritePopup class extends the BaseTableController class to manage 
+ * a popup dialog for displaying and interacting with user favorites (drivers, constructors, and circuits). 
+ * It handles adding, displaying, saving, and clearing favorites using the browser's local storage.
+ */
+class FavoritePopup extends BaseTableController {
+    /**
+     * Initializes the FavoritePopup instance.
+     * Sets up event listeners, references required DOM elements, and loads saved favorites from localStorage.
+     *
+     * @param {string} favoriteButtonId - ID of the button that opens the favorites popup.
+     * @param {string} popupId - ID of the popup dialog element.
+     * @param {string} closeButtonId - ID of the button that closes the popup.
+     * @param {string} clearButtonId - ID of the button that clears all favorites.
+     */
+    constructor(favoriteButtonId, popupId, closeButtonId, clearButtonId) {
+        super("favorites-table", "name");
+
+        this.favoriteButton = document.getElementById(favoriteButtonId);
+        this.popup = document.getElementById(popupId);
+        this.closeButton = document.getElementById(closeButtonId);
+        this.clearButton = document.getElementById(clearButtonId);
+
+        this.driversTable = document.getElementById("drivers-table");
+        this.constructorsTable = document.getElementById("constructors-table");
+        this.circuitsTable = document.getElementById("circuits-table");
+
+        if (!this.favoriteButton || !this.popup || !this.closeButton || !this.clearButton) {
+            console.error("One or more elements not found. Check your IDs.");
+            return;
+        }
+
+        this.addEventListeners();
+        this.loadFavoritesFromStorage();
+    }
+
+    /**
+     * Attaches event listeners for handling user interactions.
+     * - Opens the popup when the favorite button is clicked.
+     * - Closes the popup when the close button is clicked.
+     * - Clears favorites when the clear button is clicked.
+     * - Adds a favorite when the "add-favorite-button" is clicked.
+     */
+    addEventListeners() {
+
+        this.favoriteButton.addEventListener("click", () => this.openPopup());
+
+        this.closeButton.addEventListener("click", () => this.closePopup());
+
+        this.clearButton.addEventListener("click", () => this.clearFavorites());
+
+        document.addEventListener('click', (event) => {
+            if (event.target.classList.contains('add-favorite-button')) {
+                this.addFavorite(event);
+            }
+        });
+
+    }
+
+    /**
+     * Opens the favorites popup.
+     *
+     * @returns {void}
+     */
+    openPopup() {
+        this.popup.showModal();
+    }
+
+    /**
+     * Closes the favorites popup.
+     *
+     * @returns {void}
+     */
+    closePopup() {
+        this.popup.close();
+    }
+
+    /**
+     * Adds a new favorite to the appropriate table (drivers, constructors, or circuits).
+     * Ensures duplicates are not added and saves the updated list to localStorage.
+     *
+     * @param {Event} event - Click event from an "add-favorite-button" element.
+     * @returns {void}
+     */
+    addFavorite(event) {
+        const button = event.target;
+        const type = button.getAttribute("data-type");
+        const name = button.getAttribute("data-name");
+
+        if (!type || !name) {
+            console.error("Missing data attributes on the button.");
+            return;
+        }
+
+        let table;
+        switch (type) {
+            case "driver":
+                table = this.driversTable;
+                break;
+            case "constructor":
+                table = this.constructorsTable;
+                break;
+            case "circuit":
+                table = this.circuitsTable;
+                break;
+            default:
+                console.error("Unknown favorite type:", type);
+                return;
+        }
+
+        const existingRows = Array.from(table.rows);
+        const itemExists = existingRows.some(row => row.cells[0].textContent === name);
+
+        if (itemExists) {
+            return;
+        }
+
+        const tableRow = document.createElement("tr");
+        const tableCell = document.createElement("td");
+        tableCell.textContent = name;
+        tableCell.className = "px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base";
+
+        tableRow.appendChild(tableCell);
+        table.appendChild(tableRow);
+
+        this.saveFavoritesToStorage();
+        this.syncHeartsWithFavorites();
+    }
+
+    /**
+     * Clears all favorites by removing items from the tables and localStorage.
+     *
+     * @returns {void}
+     */
+    clearFavorites() {
+        this.driversTable.innerHTML = "";
+        this.constructorsTable.innerHTML = "";
+        this.circuitsTable.innerHTML = "";
+
+        localStorage.removeItem("favorites");
+        this.syncHeartsWithFavorites();
+    }
+
+    /**
+     * Saves the current list of favorites to localStorage for persistence.
+     *
+     * @returns {void}
+     */
+    saveFavoritesToStorage() {
+        const favorites = {
+            drivers: Array.from(this.driversTable.querySelectorAll("td")).map(cell => cell.textContent.trim()),
+            constructors: Array.from(this.constructorsTable.querySelectorAll("td")).map(cell => cell.textContent.trim()),
+            circuits: Array.from(this.circuitsTable.querySelectorAll("td")).map(cell => cell.textContent.trim()),
+        };
+
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+
+    /**
+     * Loads the favorites from localStorage and populates the respective tables.
+     * Updates the hearts in related tables to match the loaded data.
+     *
+     * @returns {void}
+     */
+    loadFavoritesFromStorage() {
+        const storedFavorites = JSON.parse(localStorage.getItem("favorites"));
+
+        if (!storedFavorites) return;
+
+        const { drivers, constructors, circuits } = storedFavorites;
+
+        drivers.forEach(driver => {
+            const row = this.createRow(driver);
+            this.driversTable.appendChild(row);
+        });
+
+        constructors.forEach(constructor => {
+            const row = this.createRow(constructor);
+            this.constructorsTable.appendChild(row);
+        });
+
+        circuits.forEach(circuit => {
+            const row = this.createRow(circuit);
+            this.circuitsTable.appendChild(row);
+        });
+
+        this.syncHeartsWithFavorites();
+    }
+
+    /**
+     * Creates a table row with the given name for use in a favorites table.
+     *
+     * @param {string} name - The name of the favorite item to display in the row.
+     * @returns {HTMLTableRowElement} The created table row element.
+     */
+    createRow(name) {
+        const tableRow = document.createElement("tr");
+        const tableCell = document.createElement("td");
+        tableCell.textContent = name;
+        tableCell.className = "px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base";
+        tableRow.appendChild(tableCell);
+        return tableRow;
+    }
+
 }
 
 /**
@@ -422,6 +683,12 @@ class CircuitPopup {
                 "button",
                 CSS_CLASSES.ADD_TO_FAV_BUTTON,
                 "Add Favorites",
+                {
+                    "data-type": "circuit",
+                },
+                {
+                    "data-name": circuitInfo.name,
+                },
             ),
         );
         document.querySelector("#circuit-popup").showModal();
@@ -545,6 +812,12 @@ class DriverPopupController extends BaseTableController {
                 "button",
                 CSS_CLASSES.ADD_TO_FAV_BUTTON,
                 "Add Favorites",
+                {
+                    "data-type": "driver",
+                },
+                {
+                    "data-name": driverDetails.forename + " " + driverDetails.surname,
+                },
             ),
         );
         document.querySelector("#driver-popup").showModal();
@@ -672,6 +945,13 @@ class ConstructorPopupController extends BaseTableController {
                 "button",
                 CSS_CLASSES.ADD_TO_FAV_BUTTON,
                 "Add Favorites",
+                {
+                    "data-type": "constructor",
+                },
+                {
+                    "data-name": constructorDetails.name,
+                },
+
             ),
         );
         document.querySelector("#constructor-popup").showModal();
@@ -873,6 +1153,7 @@ class RaceResultsController extends BaseTableController {
                 " " +
                 raceResults[index].driver.surname;
         });
+
     }
 }
 
@@ -1060,6 +1341,7 @@ class SeasonRacesController extends BaseTableController {
         super.populateTable();
         this.updateSeasonYear();
         document.querySelector("#race-details-view").classList.remove("hidden");
+
     };
 }
 
@@ -1071,7 +1353,7 @@ class Main {
     /**
      * The app basically starts from here.
      * The constructor sets up the  controllers and also the event listener
-     * that wll be triggered when the user selcts a season.
+     * that wll be triggered when the user selects a season.
      *
      */
     constructor() {
@@ -1096,9 +1378,20 @@ class Main {
         this.seasonSelectView = new SeasonRacesController(
             this.handleRaceSelection.bind(this),
         );
+
+        this.handleHomebuttonClicked();
+
+        this.favoritePopup = new FavoritePopup(
+            "favorite",
+            "favorites-popup",
+            "close-favorites-popup",
+            "clear-favorites"
+        );
+
         document
             .querySelector("#season-select")
             .addEventListener("change", this.initialize.bind(this));
+
     }
 
     /**
@@ -1129,14 +1422,17 @@ class Main {
             this.seasonSelectView.data = this.seasonRacesInfo;
             this.raceDetailsView.allSeaonRacesInfo = this.seasonRacesInfo;
 
-            this.raceQualifyingView.seasonQualifyingResults =
-                this.seasonQualifyingResults;
+            this.raceQualifyingView.seasonQualifyingResults = this.seasonQualifyingResults;
 
             this.driverDetailsPopup.seasonRaceResults = this.seasonRaceResults;
             this.constructorDetailsPopup.seasonRaceResults = this.seasonRaceResults;
             this.raceResultsView.seasonRaceResults = this.seasonRaceResults;
 
             this.seasonSelectView.populateSeasonRacesTable();
+
+            this.favoritePopup.syncHeartsWithFavorites();
+
+
         } catch (error) {
             console.error("Failed to load data : " + error);
         }
@@ -1155,6 +1451,43 @@ class Main {
         this.raceQualifyingView.populateQualifyingResultsTable(raceId);
         this.raceResultsView.populateRaceResultsTable(raceId);
         document.querySelector("#results-details-view").classList.remove("hidden");
+
+        this.favoritePopup.syncHeartsWithFavorites();
+
+    }
+
+    /**
+     * Handles the click event on the Home button.
+     * Resets the views by hiding the race details and results details views,
+     * and shows the season selection view and year selection tab.
+     *
+     * Ensures that appropriate class modifications are made to toggle visibility and layout.
+     *
+     * @param {Event} event - The click event triggered by the Home button.
+     * @returns {void}
+     */
+    handleHomebuttonClicked(event) {
+        const homeButton = document.getElementById("home");
+        const seasonSelectView = document.getElementById("season-select-view");
+        const yearSelectTab = document.getElementById("season-select");
+        const raceDetailsView = document.getElementById("race-details-view");
+        const resultsDetailsView = document.getElementById("results-details-view");
+
+        if (!homeButton || !seasonSelectView || !raceDetailsView || !resultsDetailsView) {
+            console.error("One or more elements not found. Check your IDs.");
+            return;
+        }
+
+        homeButton.addEventListener("click", (event) => {
+            raceDetailsView.classList.add("hidden");
+            raceDetailsView.classList.remove("flex");
+            resultsDetailsView.classList.add("hidden");
+            resultsDetailsView.classList.remove("flex");
+            seasonSelectView.classList.remove("hidden");
+            seasonSelectView.classList.add("flex");
+            yearSelectTab.classList.remove("hidden");
+            yearSelectTab.classList.add("flex");
+        });
     }
 }
 

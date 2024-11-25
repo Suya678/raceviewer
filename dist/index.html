@@ -1,5 +1,3 @@
-
-
 <!--For centering h1: https://medium.com/@ojogbomichael/position-an-absolute-div-to-the-center-tailwind-css-f9a0c08bf854-->
 <!-- For nav, followed a style from here: https://v1.tailwindcss.com/components/navigation -->
 <!--For Select bar color scheme : https://tailwindcss.com/-->
@@ -7,6 +5,7 @@
 
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,366 +15,74 @@
         href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700&display=swap"
         rel="stylesheet">
     <link href="./output.css" rel="stylesheet">
-    <title>Race</title>
+    <title> F1 Race</title>
     <script src="./index.js"></script>
 </head>
+
 <body class="min-h-screen flex flex-col bg-black">
-<header class="bg-black flex justify-between items-center px-2 py-1">
-    <div class="flex items-center">
-        <img
-                class="h-12 md:h-14"
-                src="../images/f1-insight-logo.png"
-                alt="F1 logo"
-        />
-    </div>
-    <nav>
-        <ul class="flex items-center gap-x-8 titillium-web-regular  md:text-xl text-red-600">
-            <li>
-                <a href="#" class="hover:text-red-400  ">
-                    Home
-                </a>
-            </li>
-            <li>
-                <a href="#" class="hover:text-red-400  ">
-                    Favorite
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-
-<main class="flex flex-col md:flex-row h-screen w-full bg-opacity-50 bg-[url('../images/bg_image.jpg')] bg-cover bg-center bg-blend-overlay">
-    <section
-            class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1 flex flex-col space-y-3"
-            id="season-select-view"
-    >
-        <h1
-                class="text-slate-200 titillium-web-semibold-italic
-           text-xl sm:text-3xl "
-        >
-            Dive Into F1: Discover Races, Teams & Standings Across Season
-        </h1>
-        <select
-                class="rounded-lg text-slate-400 bg-slate-800 h-10 focus:outline-none "
-                id="season-select"
-        >
-            <option disabled selected>
-                Select a season
-            </option>
-            <option value="2021">2021</option>
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
-        </select>
-    </section>
-
-    <section
-            class=" md:w-1/3 bg-slate-800/85 backdrop-blur-sm rounded flex flex-col m-2 p-2 hidden"
-            id="race-details-view"
-    >
-        <h2 class="titillium-web-semibold-italic mb-2 text-center text-2xl text-slate-200 md:text-4xl">
-            Year Races
-        </h2>
-        <div class="h-full overflow-y-auto">
-            <table class="min-w-full table-auto" id="season-data-table">
-                <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
-                <tr>
-                    <th class="px-2 py-2 text-center text-xs md:text-2xl sortable round" data-sortable="round">Round </th>
-                    <th class="px-2 py-2 text-center text-xs md:text-2xl sortable name" data-sortable="name">Name </th>
-                    <th class="px-2 py-2"></th>
-                </tr>
-                </thead>
-                <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                <tr class="hover:bg-slate-700">
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">Column</td>
-                    <td class="px-6 py-4 text-center">
-                        <button
-                                class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                onclick="showResults()"
-                        >
-                            results
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+    <header class="bg-black flex justify-between items-center px-2 py-1">
+        <div class="flex items-center">
+            <img class="h-12 md:h-14" src="../images/f1-insight-logo.png" alt="F1 logo" />
         </div>
-    </section>
+        <nav>
+            <ul class="flex items-center gap-x-8 titillium-web-regular  md:text-xl text-red-600">
+                <li>
+                    <a href="#" class="hover:text-red-400 " id="home">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="hover:text-red-400 " id="favorite">
+                        Favorite
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-    <section
-            class=" md:w-2/3 bg-slate-800/85 backdrop-blur-sm rounded flex flex-col m-2 p-2 hidden"
-            id="results-details-view"
-    >
-        <h2 class="titillium-web-semibold-italic mb-2 text-center text-2xl text-slate-200 md:text-4xl">
-            Results for the 2023 Grand Prix
-        </h2>
+    <main
+        class="flex flex-col md:flex-row h-screen w-full bg-opacity-50 bg-[url('../images/bg_image.jpg')] bg-cover bg-center bg-blend-overlay">
 
-        <div class=" h-full flex flex-col md:flex-row gap-2 overflow-hidden">
-            <aside class=" h-full flex flex-col md:w-2/4 gap-2 ">
-                <article
-                        class="rounded bg-slate-700 p-4 text-slate-200 titillium-web-semibold-italic text-xl overflow-auto h-1/5 max-sm:h-1/6"
-                        id="race-info"
-                >
-                    <p>Circuit Name: Monza</p>
-                    <p>Date: September</p>
-                    <p>Round:14</p>
-                </article>
-                <div class=" rounded bg-slate-700 overflow-auto h-4/5 max-sm:h-5/6 ">
-                    <h3 class=" p-2 titillium-web-semibold-italic text-xl text-slate-200 ">
-                        Qualifying Results
-                    </h3>
+        <section class="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1 flex flex-col space-y-3"
+            id="season-select-view">
+            <h1 class="text-slate-200 titillium-web-semibold-italic
+           text-xl sm:text-3xl ">
+                Dive Into F1: Discover Races, Teams & Standings Across Season
+            </h1>
+            <select class="rounded-lg text-slate-400 bg-slate-800 h-10 focus:outline-none " id="season-select">
+                <option disabled selected>
+                    Select a season
+                </option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+            </select>
+        </section>
 
-                    <table class="min-w-full table-auto" id="qualifying-results-table">
-                        <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
+        <section class=" md:w-1/3 bg-slate-800/85 backdrop-blur-sm rounded flex flex-col m-2 p-2 hidden"
+            id="race-details-view">
+            <h2 class="titillium-web-semibold-italic mb-2 text-center text-2xl text-slate-200 md:text-4xl">
+                Year Races
+            </h2>
+            <div class="h-full overflow-y-auto">
+                <table class="min-w-full table-auto" id="season-data-table">
+                    <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
                         <tr>
-                            <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="position">
-                                Position
-                            </th>
-                            <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="driver">Name </th>
-                            <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="constructor">
-                                Constructor </th>
-                            <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="q1">Q1 </th>
-                            <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="q2">Q2 </th>
-                            <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="q3">Q3 </th>
+                            <th class="px-2 py-2 text-center text-xs md:text-2xl sortable round" data-sortable="round">
+                                Round </th>
+                            <th class="px-2 py-2 text-center text-xs md:text-2xl sortable name" data-sortable="name">
+                                Name </th>
+                            <th class="px-2 py-2"></th>
                         </tr>
-                        </thead>
-                        <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
+                    </thead>
+                    <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
                         <tr class="hover:bg-slate-700">
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -385,9 +92,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -397,9 +103,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -409,9 +114,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -421,9 +125,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -433,9 +136,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -445,9 +147,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -457,9 +158,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -469,9 +169,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -481,9 +180,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -493,9 +191,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -505,9 +202,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -517,9 +213,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -529,9 +224,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -541,9 +235,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -553,9 +246,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -565,9 +257,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -577,9 +268,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -589,9 +279,8 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
@@ -601,753 +290,718 @@
                             <td class="px-6 py-4 text-center">Column</td>
                             <td class="px-6 py-4 text-center">
                                 <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
+                                    class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                    onclick="showResults()">
                                     results
                                 </button>
                             </td>
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </aside>
+                    </tbody>
+                </table>
+            </div>
+        </section>
 
-            <div class="h-full flex flex-col md:w-2/4 gap-2">
-                <section
+        <section class=" md:w-2/3 bg-slate-800/85 backdrop-blur-sm rounded flex flex-col m-2 p-2 hidden"
+            id="results-details-view">
+            <h2 class="titillium-web-semibold-italic mb-2 text-center text-2xl text-slate-200 md:text-4xl">
+                Results for the 2023 Grand Prix
+            </h2>
+
+            <div class=" h-full flex flex-col md:flex-row gap-2 overflow-hidden">
+                <aside class=" h-full flex flex-col md:w-2/4 gap-2 ">
+                    <article
+                        class="rounded bg-slate-700 p-4 text-slate-200 titillium-web-semibold-italic text-xl overflow-auto h-1/5 max-sm:h-1/6"
+                        id="race-info">
+                        <p class="underline cursor-pointer hover:text-cyan-300" data-circuit-id="3">Circuit Name:
+                            Circuit: Bahrain International Circuit</p>
+                        <p>Round 1</p>
+                        <p>Date 2021-03-28</p><a class="text-slate-400 hover:text-blue-300 underline text-base"
+                            href="http://en.wikipedia.org/wiki/2021_Bahrain_Grand_Prix" target="_blank">Url:
+                            http://en.wikipedia.org/wiki/2021_Bahrain_Grand_Prix</a>
+                    </article>
+                    <div class=" rounded bg-slate-700 overflow-auto h-4/5 max-sm:h-5/6 ">
+                        <h3 class=" p-2 titillium-web-semibold-italic text-xl text-slate-200 ">
+                            Qualifying Results
+                        </h3>
+
+                        <table class="min-w-full table-auto" id="qualifying-results-table">
+                            <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
+                                <tr>
+                                    <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="position">
+                                        Position
+                                    </th>
+                                    <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="driver">Name
+                                    </th>
+                                    <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="constructor">
+                                        Constructor </th>
+                                    <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="q1">Q1 </th>
+                                    <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="q2">Q2 </th>
+                                    <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="q3">Q3 </th>
+                                </tr>
+                            </thead>
+                            <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
+                                <tr class="hover:bg-slate-600">
+                                    <td class="px-2 py-2 text-center">1</td>
+                                    <td class="px-2 py-2 text-center underline cursor-pointer hover:text-cyan-300"
+                                        data-driver-id="830">Max Verstappen</td>
+                                    <td class="px-2 py-2 text-center underline cursor-pointer hover:text-cyan-300"
+                                        data-constructor-id="9">Red Bull</td>
+                                    <td class="px-2 py-2 text-center">01:30.5</td>
+                                    <td class="px-2 py-2 text-center">01:30.3</td>
+                                    <td class="px-2 py-2 text-center">01:29.0</td>
+                                </tr>
+                                <tr class="hover:bg-slate-600">
+                                    <td class="px-2 py-2 text-center">2</td>
+                                    <td class="px-2 py-2 text-center underline cursor-pointer hover:text-cyan-300"
+                                        data-driver-id="1">Lewis Hamilton</td>
+                                    <td class="px-2 py-2 text-center underline cursor-pointer hover:text-cyan-300"
+                                        data-constructor-id="131">Mercedes</td>
+                                    <td class="px-2 py-2 text-center">01:30.6</td>
+                                    <td class="px-2 py-2 text-center">01:30.1</td>
+                                    <td class="px-2 py-2 text-center">01:29.4</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </aside>
+
+                <div class="h-full flex flex-col md:w-2/4 gap-2">
+                    <section
                         class="rounded bg-slate-700 p-4 text-red-500 titillium-web-semibold-italic text-sm lg:text-lg flex flex-row gap-4 overflow-auto h-1/5 max-sm:h-[15%]"
-                        id="podium-finish-cards"
-                >
-                    <article class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-end bg-white p-2 bg-[url('../images/1.png')] bg-[length:60%_60%] bg-no-repeat">
-                        <p>Max Verstappen</p>
-                    </article>
+                        id="podium-finish-cards">
+                        <article
+                            class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-end bg-white p-2 bg-[url('../images/1.png')] bg-[length:60%_60%] bg-no-repeat">
+                            <p>Max Verstappen</p>
+                        </article>
 
-                    <article class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-end bg-white p-2 bg-[url('../images/2.png')] bg-[length:60%_60%] bg-no-repeat">
-                        <p>Max Verstappen</p>
-                    </article>
-                    <article class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-end bg-white p-2 bg-[url('../images/3.png')] bg-[length:60%_60%] bg-no-repeat">
-                        <p>Max Verstappen</p>
-                    </article>
+                        <article
+                            class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-end bg-white p-2 bg-[url('../images/2.png')] bg-[length:60%_60%] bg-no-repeat">
+                            <p>Max Verstappen</p>
+                        </article>
+                        <article
+                            class="rounded-lg border shadow-md flex-1 flex flex-col items-center justify-end bg-white p-2 bg-[url('../images/3.png')] bg-[length:60%_60%] bg-no-repeat">
+                            <p>Max Verstappen</p>
+                        </article>
+                    </section>
+
+                    <section class="overflow-auto rounded bg-slate-700  h-4/5 max-sm:h-[85%]">
+                        <h3 class=" p-2 titillium-web-semibold-italic text-xl text-slate-200 ">
+                            Results
+                        </h3>
+
+                        <table class="min-w-full" id="race-results-table">
+                            <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
+                                <tr>
+                                    <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="position">
+                                        Position </th>
+                                    <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="driver">Name
+                                    </th>
+                                    <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="constructor">
+                                        Constructor
+                                    </th>
+                                    <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="laps">Laps </th>
+                                    <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="points">
+                                        Points
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-6 py-4 text-center">Column</td>
+                                    <td class="px-6 py-4 text-center">Column</td>
+                                    <td class="px-6 py-4 text-center">
+                                        <button
+                                            class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
+                                            onclick="showResults()">
+                                            results
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <dialog id="constructor-popup"
+        class="h-3/4 w-3/4 md:h-3/6 md:w-3/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15">
+        <div class="flex flex-col h-full min-h-0">
+            <button
+                class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300"
+                id="close-constructor-popup" type="button">
+                <span class="text-lg font-bold">&times;</span>
+            </button>
+
+            <main class="flex min-h-0 flex-1 flex-col gap-3 text-slate-200 md:flex-row m-1 ">
+
+                <section class="flex flex-col items-center gap-4 p-2 md:p4 md:basis-1/3 titillium-web-regular ">
+                    <h2 class="titillium-web-semibold-italic text-2xl">Audi</h2>
+                    <p>Name:</p>
+                    <p>Nationality:</p>
+                    <button class="add-favorite-button rounded bg-slate-700 px-4 py-2 text-sm hover:bg-slate-600"
+                        data-type=constructor data-name="Lewis Hamilton">
+                        Add Favorites
+                    </button>
                 </section>
 
-                <section class="overflow-auto rounded bg-slate-700  h-4/5 max-sm:h-[85%]">
-                    <h3 class=" p-2 titillium-web-semibold-italic text-xl text-slate-200 ">
-                        Results
-                    </h3>
+                <section class="flex flex-1 flex-col gap-3 overflow-hidden rounded bg-slate-700 p-2">
+                    <h2 class="titillium-web-semibold-italic mr-auto text-2xl text-slate-200">
+                        Race
+                    </h2>
+                    <div class="h-full min-h-0 flex-1 overflow-y-auto rounded-lg">
+                        <table class="w-full table-auto" id="constructor-popup-table">
+                            <thead class="sticky top-0 bg-slate-600">
+                                <tr class="text-slate-200">
+                                    <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg"
+                                        data-sortable="round">Round </th>
+                                    <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                        Name
+                                    </th>
+                                    <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                        Driver
+                                    </th>
+                                    <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                        Position
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="titillium-web-regular bg-slate-800">
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
 
-                    <table class="min-w-full" id="race-results-table">
-                        <thead class="titillium-web-semibold-italic sticky top-0 bg-slate-600 text-slate-200">
-                        <tr>
-                            <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="position">Position </th>
-                            <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="driver">Name </th>
-                            <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="constructor">
-                                Constructor
-                            </th>
-                            <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="laps">Laps </th>
-                            <th class="px-2 py-2 text-center text-xs md:text-lg" data-sortable="points">
-                                Points
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody class="titillium-web-regular bg-slate-700 text-slate-300">
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">Column</td>
-                            <td class="px-6 py-4 text-center">
-                                <button
-                                        class="relative right-1 top-1 rounded bg-slate-600 px-4 py-2 text-slate-50 outline-none"
-                                        onclick="showResults()"
-                                >
-                                    results
-                                </button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </dialog>
+
+
+    <dialog id="driver-popup"
+        class="h-3/4 w-3/4 md:h-3/6 md:w-3/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15">
+        <div class="flex flex-col h-full min-h-0">
+            <button
+                class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300"
+                id="close-driver-popup" type="button">
+                <span class="text-lg font-bold">&times;</span>
+            </button>
+
+            <main class="flex min-h-0 flex-1 flex-col gap-2 text-slate-200 md:flex-row m-1 ">
+                <section
+                    class="flex flex-col items-center gap-2 p-2  md:gap-4 md:p4 md:basis-1/3 titillium-web-regular ">
+                    <h2 class="titillium-web-semibold-italic text-2xl">Audi</h2>
+                    <p>Name:</p>
+                    <p>Nationality:</p>
+                    <button class="add-favorite-button rounded bg-slate-700 px-4 py-2 text-sm hover:bg-slate-600"
+                        data-type="driver" data-name="Lewis Hamilton">
+                        Add Favorites
+                    </button>
+                </section>
+
+                <section class="flex flex-1 flex-col gap-2 overflow-hidden rounded bg-slate-700 p-2">
+                    <h2 class="titillium-web-semibold-italic mr-auto text-2xl text-slate-200">
+                        Race
+                    </h2>
+                    <div class="h-full min-h-0 flex-1 overflow-y-auto rounded-lg">
+                        <table class="w-full table-auto" id="driver-popup-table">
+                            <thead class="sticky top-0 bg-slate-600">
+                                <tr class="text-slate-200">
+                                    <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg"
+                                        data-sortable="round">Round </th>
+                                    <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                        Name </th>
+                                    <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                        Position </th>
+                                    <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
+                                        Points </th>
+                                </tr>
+                            </thead>
+                            <tbody class="titillium-web-regular bg-slate-800">
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-slate-700">
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        1
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        British Grand Prix
+                                    </td>
+                                    <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
+                                        Max Verstappen
+                                    </td>
+                                    <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
+                                        1
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </dialog>
+
+    <dialog id="circuit-popup"
+        class=" h-2/5 md:h-2/6 md:w-2/5 rounded-lg bg-slate-800  focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15">
+        <div class="flex flex-row h-full min-h-0 text-slate-200">
+            <div class="h-full bg-amber-50 basis-1/2">
+                <img src="../images/Austin.jpg" class="h-full w-full " alt="circuit" />
+            </div>
+
+            <div class=" basis-1/2 flex flex-col h-full min-h-0">
+                <button
+                    class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300"
+                    id="close-circuit-popup" type="button">
+                    <span class="text-lg font-bold">&times;</span>
+                </button>
+                <section
+                    class="flex flex-col items-center justify-center gap-2 p-2 md:gap-4 md:p4 md:basis-1/3 titillium-web-regular">
+                    <h2 class="titillium-web-semibold-italic text-2xl">Circuit Details</h2>
+                    <p>Name:</p>
+                    <p>Nationality:</p>
+                    <button class="add-favorite-button rounded bg-slate-700 px-4 py-2 text-sm hover:bg-slate-600"
+                        data-type="circuit" data-name="Lewis Hamilton">
+                        Add Favorites
+                    </button>
                 </section>
             </div>
         </div>
-    </section>
-</main>
+    </dialog>
 
-
-
-
-
-
-
-
-<dialog
-        id="constructor-popup"
-        class="h-3/4 w-3/4 md:h-3/6 md:w-3/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15" >
-    <div class="flex flex-col h-full min-h-0">
-        <button
-                class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300"
-                id="close-constructor-popup"
-                type="button"
-        >
-            <span class="text-lg font-bold">&times;</span>
-        </button>
-
-        <main class="flex min-h-0 flex-1 flex-col gap-3 text-slate-200 md:flex-row m-1 ">
-
-            <section class="flex flex-col items-center gap-4 p-2 md:p4 md:basis-1/3 titillium-web-regular ">
-                <h2 class="titillium-web-semibold-italic text-2xl">Audi</h2>
-                <p >Name:</p>
-                <p >Nationality:</p>
-                <button class="rounded bg-slate-700 px-4 py-2 text-sm hover:bg-slate-600">
-                    Add Favorites
-                </button>
-            </section>
-
-            <section class="flex flex-1 flex-col gap-3 overflow-hidden rounded bg-slate-700 p-2">
-                <h2 class="titillium-web-semibold-italic mr-auto text-2xl text-slate-200">
-                    Race
-                </h2>
-                <div class="h-full min-h-0 flex-1 overflow-y-auto rounded-lg">
-                    <table class="w-full table-auto" id="constructor-popup-table">
-                        <thead class="sticky top-0 bg-slate-600">
-                        <tr class="text-slate-200">
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg" data-sortable="round">Round </th>
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
-                                Name
-                            </th>
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
-                                Driver
-                            </th>
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
-                                Position
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody class="titillium-web-regular bg-slate-800">
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
-    </div>
-</dialog>
-
-
-
-
-
-<dialog
-        id="driver-popup"
-        class="h-3/4 w-3/4 md:h-3/6 md:w-3/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15"
->
-    <div class="flex flex-col h-full min-h-0">
-        <button
-                class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300"
-                id="close-driver-popup"
-                type="button"
-        >
-            <span class="text-lg font-bold">&times;</span>
-        </button>
-
-        <main class="flex min-h-0 flex-1 flex-col gap-2 text-slate-200 md:flex-row m-1 ">
-            <section class="flex flex-col items-center gap-2 p-2  md:gap-4 md:p4 md:basis-1/3 titillium-web-regular ">
-                <h2 class="titillium-web-semibold-italic text-2xl">Audi</h2>
-                <p >Name:</p>
-                <p >Nationality:</p>
-                <button class="rounded bg-slate-700 px-4 py-2 text-sm hover:bg-slate-600">
-                    Add Favorites
-                </button>
-            </section>
-
-            <section class="flex flex-1 flex-col gap-2 overflow-hidden rounded bg-slate-700 p-2">
-                <h2 class="titillium-web-semibold-italic mr-auto text-2xl text-slate-200">
-                    Race
-                </h2>
-                <div class="h-full min-h-0 flex-1 overflow-y-auto rounded-lg">
-                    <table class="w-full table-auto" id="driver-popup-table">
-                        <thead class="sticky top-0 bg-slate-600">
-                        <tr class="text-slate-200">
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg" data-sortable="round">Round </th>
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
-                                Name </th>
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
-                                Position </th>
-                            <th class="px-2 py-2 text-center text-xs md:px-4 md:py-2 md:text-lg">
-                                Points </th>
-                        </tr>
-                        </thead>
-                        <tbody class="titillium-web-regular bg-slate-800">
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                1
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                British Grand Prix
-                            </td>
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-4 md:text-base">
-                                Max Verstappen
-                            </td>
-                            <td class="px-4 py-3 text-center text-xs text-slate-300 md:px-6 md:text-base">
-                                1
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
-    </div>
-</dialog>
-<dialog
-        id="circuit-popup"
-        class=" h-2/5 md:h-2/6 md:w-2/5 rounded-lg bg-slate-800  focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15"
->
-    <div class="flex flex-row h-full min-h-0 text-slate-200">
-        <div class="h-full bg-amber-50 basis-1/2">
-            <img src="../images/Austin.jpg" class="h-full w-full " alt="circuit" />
-        </div>
-
-        <div class=" basis-1/2 flex flex-col h-full min-h-0">
-            <button
-                    class="ml-auto flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300"
-                    id="close-circuit-popup"
-                    type="button"
-            >
-                <span class="text-lg font-bold">&times;</span>
-            </button>
-            <section class="flex flex-col items-center justify-center gap-2 p-2 md:gap-4 md:p4 md:basis-1/3 titillium-web-regular" >
-                <h2 class="titillium-web-semibold-italic text-2xl">Circuit Details</h2>
-                <p>Name:</p>
-                <p>Nationality:</p>
-                <button class="rounded bg-slate-700 px-4 py-2 text-sm hover:bg-slate-600">
-                    Add Favorites
-                </button>
-            </section>
-        </div>
-    </div>
-</dialog>
-<dialog
-        id="favorites-popup"
-        class=" h-2/5 md:h-2/5 md:w-2/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15"
->
-    <div class="flex flex-col h-full text-slate-200 justify-center items-center">
-        <div class=" flex flex-row w-full relative justify-center">
-            <h2 class="titillium-web-semibold-italic text-2xl">Favorites</h2>
-            <button
+    <dialog id="favorites-popup"
+        class=" h-2/5 md:h-2/5 md:w-2/5 rounded-lg bg-slate-800 p-2 focus:outline-none backdrop:bg-slate-400 backdrop:opacity-15">
+        <div class="flex flex-col h-full text-slate-200 justify-center items-center">
+            <div class=" flex flex-row w-full relative justify-center">
+                <h2 class="titillium-web-semibold-italic text-2xl">Favorites</h2>
+                <button
                     class="absolute right-0  flex h-6 w-6 items-center justify-center rounded-full bg-slate-600 text-gray-800 outline-none hover:bg-gray-300"
-                    id="close-favorites-popup"
-                    type="button"
-            >
-                <span class="text-lg font-bold">&times;</span>
+                    id="close-favorites-popup" type="button">
+                    <span class="text-lg font-bold">&times;</span>
+                </button>
+            </div>
+            <div class="flex flex-row flex-1 min-h-0 ">
+                <section class="flex flex-1 flex-col gap-3  ounded p-2 justify-center items-center">
+                    <h2 class="titillium-web-semibold-italic text-xl text-slate-200">
+                        Drivers
+                    </h2>
+                    <div class=" flex-1 overflow-y-auto rounded-lg bg-slate-700">
+                        <table class="w-full table-auto " id="drivers-table">
+                            <tbody class="titillium-web-regular ">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <section class="flex flex-1 flex-col gap-3  ounded p-2 justify-center items-center">
+                    <h2 class="titillium-web-semibold-italic text-xl text-slate-200">
+                        Constructors
+                    </h2>
+                    <div class=" flex-1 overflow-y-auto rounded-lg bg-slate-700">
+                        <table class="w-full table-auto " id="constructors-table">
+                            <tbody class="titillium-web-regular  ">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <section class="flex flex-1 flex-col gap-3  ounded p-2 justify-center items-center">
+                    <h2 class="titillium-web-semibold-italic text-xl text-slate-200">
+                        Circuits
+                    </h2>
+                    <div class=" flex-1 overflow-auto rounded-lg bg-slate-700">
+                        <table class="w-full table-auto" id="circuits-table">
+                            <tbody class="titillium-web-regular  ">
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+            <button
+                class="titillium-web-semibold-italic mt-2 rounded-md bg-slate-600 hover:bg-slate-500 px-2 py-1 text-slate-200 text-lg"
+                id="clear-favorites" type="button">
+                Clear Favorites
             </button>
         </div>
-        <div class="flex flex-row flex-1 min-h-0 ">
-            <section class="flex flex-1 flex-col gap-3  ounded p-2 justify-center items-center">
-                <h2 class="titillium-web-semibold-italic text-xl text-slate-200">
-                    Drivers
-                </h2>
-                <div class=" flex-1 overflow-y-auto rounded-lg bg-slate-700">
-                    <table class="w-full table-auto ">
-                        <tbody class="titillium-web-regular  ">
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-            <section class="flex flex-1 flex-col gap-3  ounded p-2 justify-center items-center">
-                <h2 class="titillium-web-semibold-italic text-xl text-slate-200">
-                    Constructors
-                </h2>
-                <div class=" flex-1 overflow-y-auto rounded-lg bg-slate-700">
-                    <table class="w-full table-auto ">
-                        <tbody class="titillium-web-regular  ">
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-            <section class="flex flex-1 flex-col gap-3  ounded p-2 justify-center items-center">
-                <h2 class="titillium-web-semibold-italic text-xl text-slate-200">
-                    Circuits
-                </h2>
-                <div class=" flex-1 overflow-auto rounded-lg bg-slate-700">
-                    <table class="w-full table-auto">
-                        <tbody class="titillium-web-regular  ">
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-slate-700 ">
-                            <td class="px-2 py-2 text-center text-xs text-slate-300 md:px-8 md:text-base ">
-                                British Grand Prix
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </div>
-        <button
-                class="titillium-web-semibold-italic mt-2 rounded-md bg-slate-600 hover:bg-slate-500 px-2 py-1 text-slate-200 text-lg"
-                id="clear-favorites"
-                type="button"
-        >
-            Clear Favorites
-        </button>
-    </div>
-</dialog>
+    </dialog>
+
 </body>
+
 </html>
-
-
