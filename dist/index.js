@@ -741,7 +741,7 @@ class DriverPopupController extends BaseTableController {
 
         const placeHolder_img = Utility.createElement(
             "img",
-            "h-16 w-16 rounded-full object-cover",
+            "h-14 w-14 rounded-full object-cover",
             null,
             { src: "../images/max-v.jpg.webp" }
         );
