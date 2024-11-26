@@ -1,6 +1,6 @@
 # F1 Race Viewer
 
-A web-based F1 race viewer application exploring Formula 1 seasons, races and results
+A web-based F1 race viewer application for exploring Formula 1 seasons, races and results
 
 ## Features
 
