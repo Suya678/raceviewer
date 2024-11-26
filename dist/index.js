@@ -1,3 +1,4 @@
+
 const API = {
     BASE_URL: "https://www.randyconnolly.com/funwebdev/3rd/api/f1",
     QUERY: {
@@ -742,7 +743,7 @@ class DriverPopupController extends BaseTableController {
             "img",
             "h-16 w-16 rounded-full object-cover",
             null,
-            { src: "../images/Driver_photo.jpg" }
+            { src: "../images/max-v.jpg.webp" }
         );
 
         driverPopupInfoSection.appendChild(placeHolder_img);
