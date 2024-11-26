@@ -743,7 +743,7 @@ class DriverPopupController extends BaseTableController {
             "img",
             "h-14 w-14 rounded-full object-cover",
             null,
-            { src: "../images/driver.jpeg" }
+            { src: "./images/driver.jpeg" }
         );
 
         driverPopupInfoSection.appendChild(placeHolder_img);
