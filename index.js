@@ -1,16 +1,16 @@
 
 const API = {
-    BASE_URL: "https://www.randyconnolly.com/funwebdev/3rd/api/f1",
+    BASE_URL: "https://f1dataapi.depanshu.com/api",
     QUERY: {
-        ALL_RACES_INFO: "/races.php?season=",
-        QUALIFYING: "/qualifying.php?race=",
-        RACE_INFO: "/races.php?id=",
-        RACE_RESULTS: "/results.php?race=",
-        CIRCUIT_INFO: "/circuits.php?id=",
-        DRIVER_INFO: "/drivers.php?id=",
-        ALL_RACE_RESULTS: "/results.php?season=",
-        ALL_QUALIFYING_RESULTS: "/qualifying.php?season=",
-        CONSTRUCTOR_INFO: "/constructors.php?id="
+        ALL_RACES_INFO: "/races?season=",
+        QUALIFYING: "/qualifyingResults?id=",
+        RACE_INFO: "/races?id=",
+        RACE_RESULTS: "/results?race=",
+        CIRCUIT_INFO: "/circuits?id=",
+        DRIVER_INFO: "/drivers?id=",
+        ALL_RACE_RESULTS: "/raceResults?season=",
+        ALL_QUALIFYING_RESULTS: "/qualifyingResults?season=",
+        CONSTRUCTOR_INFO: "/constructors?id="
     }
 };
 
